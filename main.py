@@ -60,8 +60,6 @@ def addAuto():
 th3 = threading.Thread(target=addAuto, daemon=True)
 th3.start()
 
-import pygame
-
 def collision(rec: pygame.Rect, x: int, y: int):
     return rec.rect.collidepoint(x, y)
 
@@ -95,5 +93,6 @@ while not die:
 
     if gameState:
         print("Goodbye")
+
 
 
