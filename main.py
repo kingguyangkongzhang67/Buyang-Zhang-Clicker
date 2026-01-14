@@ -44,7 +44,7 @@ def counter():
         else:
             print(num)
         num += 1
-        time.sleep(2)
+        time.sleep(1)
 
 th2 = threading.Thread(target=counter, daemon=True)
 th2.start()
@@ -60,6 +60,11 @@ def addAuto():
 th3 = threading.Thread(target=addAuto, daemon=True)
 th3.start()
 
+import pygame
+
+def collision(rec: pygame.Rect, x: int, y: int):
+    return rec.rect.collidepoint(x, y)
+
 # main running loop type shiiiittt
 while not die:
     # RECOGNIZE QUIT
@@ -73,10 +78,17 @@ while not die:
             if event.button == 1:
                 mouse_pos = event.pos  # pos xy
                 print(f"THIS IS A TEST FUNCTION. your cursor has been clicked at: {mouse_pos}")
+                (x, y) = mouse_pos
+                print(str(x) + "\n" + str(y))
+                print(collision(beewu_rect, x, y))
+                #y bound: 200, 600
+                #x bound: 400, 660
+                if mouse_pos[0] <= 600 and mouse_pos >= 200 and mouse_pos[1] <= 660 and mouse_pos[1] >= 400:
+                  noodles += 1
+      
 
-        
     if not gameState:
-        screen.fill((255, 255, 255))
+        screen.fill((255, 255, 0))
         screen.blit(beewu, beewu_rect)
         pygame.display.flip()
         clock.tick(120)
