@@ -59,15 +59,21 @@ def addAuto():
 th3 = threading.Thread(target=addAuto, daemon=True)
 th3.start()
 
-
-
-
+# main running loop type shiiiittt
 while not die:
     # RECOGNIZE QUIT
     for event in pygame.event.get():
+        # DIE
         if event.type == pygame.QUIT:
             die = 1
-    
+
+         if event.type == pygame.MOUSEBUTTONDOWN:
+            # button 1 = left mouse
+            if event.button == 1:
+                mouse_pos = event.pos  # pos xy
+                print(f"THIS IS A TEST FUNCTION. your cursor has been clicked at: {mouse_pos}")
+
+        
     if not gameState:
         screen.fill((255, 255, 255))
         screen.blit(beewu, beewu_rect)
@@ -76,4 +82,5 @@ while not die:
 
     if gameState:
         print("Goodbye")
+
 
