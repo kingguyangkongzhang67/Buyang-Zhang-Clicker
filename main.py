@@ -31,7 +31,8 @@ def test1():
 th1 = threading.Thread(target=test1, daemon=True)
 th1.start()
 
-def test2():
+# keeps track of running time
+def counter():
     num = 1
     while True:
         if num % 3 == 0 and num % 5 == 0:
@@ -45,7 +46,7 @@ def test2():
         num += 1
         time.sleep(2)
 
-th2 = threading.Thread(target=test2, daemon=True)
+th2 = threading.Thread(target=counter, daemon=True)
 th2.start()
 
 def addAuto():
@@ -67,7 +68,7 @@ while not die:
         if event.type == pygame.QUIT:
             die = 1
 
-         if event.type == pygame.MOUSEBUTTONDOWN:
+        if event.type == pygame.MOUSEBUTTONDOWN:
             # button 1 = left mouse
             if event.button == 1:
                 mouse_pos = event.pos  # pos xy
