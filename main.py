@@ -15,11 +15,22 @@ ASSETS = os.path.join(BASE, "assets")
 beewu = pygame.image.load(os.path.join(ASSETS, "beewu.png")).convert_alpha()
 beewu_rect = beewu.get_rect(center=(WIDTH / 2, HEIGHT / 2))
 
+noodleBg = pygame.image.load(os.path.join(ASSETS, "noodlebg.png")).convert_alpha()
+noodleBg_rect = noodleBg.get_rect(center=(WIDTH / 2, HEIGHT / 2))
+
+# other shit
+
 clock = pygame.time.Clock()
 die = 0
 
-# other shit
-gameState = 0
+gameState = 1
+'''
+important
+
+0 = starting menu
+1 = clicker ui
+2 = shop ? 
+'''
 noodles = 0
 nps = 0
 
@@ -61,7 +72,7 @@ th3 = threading.Thread(target=addAuto, daemon=True)
 th3.start()
 
 def collision(rec: pygame.Rect, x: int, y: int):
-    return rec.rect.collidepoint(x, y)
+    return rec.collidepoint(x, y)
 
 # main running loop type shiiiittt
 while not die:
@@ -79,20 +90,18 @@ while not die:
                 (x, y) = mouse_pos
                 print(str(x) + "\n" + str(y))
                 print(collision(beewu_rect, x, y))
-                #y bound: 200, 600
-                #x bound: 400, 660
-                if mouse_pos[0] <= 600 and mouse_pos >= 200 and mouse_pos[1] <= 660 and mouse_pos[1] >= 400:
-                  noodles += 1
-      
+    
+    # BACKGROUND
+    screen.blit(noodleBg, noodleBg_rect)
 
+    # starting 
     if not gameState:
-        screen.fill((255, 255, 0))
-        screen.blit(beewu, beewu_rect)
-        pygame.display.flip()
-        clock.tick(120)
+        pass 
 
     if gameState:
-        print("Goodbye")
+        screen.blit(beewu, beewu_rect)
+        clock.tick(120)
 
+    pygame.display.flip()
 
 
