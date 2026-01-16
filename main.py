@@ -229,7 +229,7 @@ while not die:
                 if gameState == 0:
                     gameState = 1
                 elif gameState == 1:
-                    if collision(beewu_rect, x, y):
+                    if collision(beewu_rect, x, y) and gameState != 0:
                         print("Detected click. " + str(rate) + " noodles added.")
                         lugas.play()
                         addNoodles()
@@ -264,11 +264,12 @@ while not die:
 
     # starting 
     if gameState == 0:
-        title_surface = rainbowTitle(now, "Buyang Zhang Clicker 5000", 84, 18)
-        title_rect = title_surface.get_rect(center=(WIDTH / 2, HEIGHT / 2 - 60))
+        screen.blit(beewu, beewu_rect)
+        title_surface = rainbowTitle(now, "Buyang Zhang Clicker 5000", 96, 24)
+        title_rect = title_surface.get_rect(center=(WIDTH / 2, 120))
         screen.blit(title_surface, title_rect)
         hint_text = t1.render("Click anywhere to play", True, (0, 0, 0))
-        screen.blit(hint_text, hint_text.get_rect(center=(WIDTH / 2, HEIGHT / 2 + 60)))
+        screen.blit(hint_text, hint_text.get_rect(center=(WIDTH / 2, 670)))
     elif gameState == 1:
         screen.blit(beewu, beewu_rect)
         title_surface = spinnySpinSpin(now)
